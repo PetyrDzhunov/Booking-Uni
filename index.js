@@ -6,6 +6,9 @@ const expressConfig = require('./config/express');
 
 const authMiddleware = require('./middlewares/auth');
 const userService = require('./services/userService');
+const routesConfig = require('./config/routes');
+
+
 start()
 
 async function start() {
@@ -13,32 +16,13 @@ async function start() {
 
     await databaseConfig(app);
     expressConfig(app)
+    routesConfig(app);
 
     app.get('/', (req, res) => {
         res.send('It works');
     });
 
     app.listen(PORT, () => {
-        testAuth();
         console.log(`Application started at http://localhost:${PORT}`)
     });
 }
-
-async function testAuth() {
-    const reqMock = {};
-    const resMock = {
-        cookie() {
-            console.log('Set cookie ', arguments);
-        }
-    };
-    const nextMock = () => {};
-    try {
-        const auth = authMiddleware();
-        auth(reqMock, resMock, nextMock);
-
-        await reqMock.auth.login('john', '123asd');
-
-    } catch (err) {
-        console.log('Error:', err.message);
-    }
-};
