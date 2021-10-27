@@ -1,9 +1,9 @@
 # Project Scaffold
 
-[ ] Create folder structure
-[ ] Initialize NPM project
-[ ] Install libraries
-[ ] Include resources (HTML&CSS , etc.)
+[x] Initialize NPM project
+[x] Create folder structure
+[x] Install libraries
+[x] Include resources (HTML&CSS , etc.)
 [ ] Arrange templates (without editing)
 [ ] Create initialization files
 [ ] -index - create and start (Express) application
