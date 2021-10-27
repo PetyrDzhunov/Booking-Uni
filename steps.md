@@ -3,8 +3,6 @@
 [x] Initialize NPM project
 [x] Create folder structure
 [x] Install libraries
-[x] Include resources (HTML&CSS , etc.)
-[ ] Arrange templates (without editing)
 [ ] Create initialization files
 [ ] -index - create and start (Express) application
 [ ] - config files - database connect(Mongoose), Express middlewares(body-parser , static) , external middlewares(cookie parser,bcrypt,jwt)
@@ -16,6 +14,8 @@
 
 # Application Requirments(Booking-uni)
 
+[x] Include resources (HTML&CSS , etc.)
+[ ] Arrange templates (without editing)
 [ ] Adapt User model and user service, auth middleware to project requirments
 [ ] Implement register,login page actions, register, login, logout actions
 [ ] Create models for project specific data
