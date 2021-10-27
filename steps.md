@@ -7,7 +7,7 @@
 [x] -index - create and start (Express) application
 [x] - config files - database connect(Mongoose), Express middlewares(body-parser , static) , external middlewares(cookie parser,bcrypt,jwt)
 [x] Create generic User model
-[ ] Create user servicer and auth middleware
+[x] Create user servicer and auth middleware
 [ ] Create mock routes for register,login and logout
 [ ] Create route guards
 [ ] Create generic storage middleware

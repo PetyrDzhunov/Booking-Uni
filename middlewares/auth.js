@@ -6,24 +6,22 @@ const { TOKEN_SECRET, COOKIE_NAME } = require('../config')
 const userService = require('../services/userService');
 
 
-function init() {
-    return (req, res, next) => {
-        //atach functions to context;
-        req.auth = {
-            async register(username, password) {
-                const token = await register(username, password);
-                res.cookie(COOKIE_NAME, token);
-            },
-            login() {
-                const token = await login(username, password);
-                res.cookie(COOKIE_NAME, token);
-            },
-            logout() {
-                res.clearCookie(COOKIE_NAME);
-            }
+module.exports = () => (req, res, next) => {
+    //atach functions to context;
+    req.auth = {
+        async register(username, password) {
+            const token = await register(username, password);
+            res.cookie(COOKIE_NAME, token);
+        },
+        async login(username, password) {
+            const token = await login(username, password);
+            res.cookie(COOKIE_NAME, token);
+        },
+        logout() {
+            res.clearCookie(COOKIE_NAME);
         }
-        next();
-    };
+    }
+    next();
 };
 
 
@@ -53,7 +51,6 @@ async function login(username, password) {
     };
 
     return generateToken(user);
-
 };
 
 
