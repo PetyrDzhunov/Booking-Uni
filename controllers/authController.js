@@ -42,7 +42,7 @@ router.post('/login', async(req, res) => {
     try {
         await req.auth.login(req.body.username, req.body.password);
         res.redirect('/');
-    } catch (error) {
+    } catch (err) {
         console.log(error.message);
         const ctx = {
             errors: [err.message],
@@ -51,7 +51,6 @@ router.post('/login', async(req, res) => {
             }
         }
         res.render('login', ctx);
-
     }
 });
 module.exports = router;

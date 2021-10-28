@@ -7,7 +7,6 @@ const userService = require('../services/userService');
 
 
 module.exports = () => (req, res, next) => {
-    //atach functions to context;
     if (parseToken(req, res)) {
         req.auth = {
             async register(username, password) {
