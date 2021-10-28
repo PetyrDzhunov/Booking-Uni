@@ -8,6 +8,7 @@ router.get('/register', isGuest(), (req, res) => {
 
 router.post('/register',
     isGuest(),
+    body('email', 'Invalid email').isEmail(),
     body('username').isLength({ min: 3 }).withMessage('Username must be at least 3 characters long'),
     body('rePass').custom((value, { req }) => {
         if (value != req.body.password) {
@@ -21,7 +22,7 @@ router.post('/register',
             if (errors.length > 0) {
                 throw new Error('Validation error');
             };
-            await req.auth.register(req.body.username, req.body.password);
+            await req.auth.register(req.body.username, req.body.email, req.body.password);
             res.redirect('/'); //TODO  change redirect location
         } catch (error) {
             console.log(error.message);
