@@ -3,7 +3,7 @@ const { body, validationResult } = require('express-validator');
 const { isGuest } = require('../middlewares/guards');
 
 router.get('/register', isGuest(), (req, res) => {
-    res.render('register');
+    res.render('user/register');
 });
 
 router.post('/register',
@@ -31,13 +31,13 @@ router.post('/register',
                     username: req.body.username
                 }
             }
-            res.render('register', ctx);
+            res.render('user/register', ctx);
         }
 
     });
 
 router.get('/login', isGuest(), (req, res) => {
-    res.render('login');
+    res.render('user/login');
 });
 
 router.post('/login', isGuest(), async(req, res) => {
@@ -52,7 +52,7 @@ router.post('/login', isGuest(), async(req, res) => {
                 username: req.body.username
             }
         }
-        res.render('login', ctx);
+        res.render('user/login', ctx);
     }
 });
 
