@@ -10,14 +10,10 @@
     <div id='container'>
       {{#if errors}}
         <div>
-          <div class='notification loadingBox'>
-            Loading …
-          </div>
-          <div class='notification infoBox'>
-            <span>Info</span>
-          </div>
           <div class='notification errorBox'>
-            <span>Error</span>
+            {{#each errors}}
+              <p><span>{{this}}</span></p>
+            {{/each}}
           </div>
         </div>
       {{/if}}

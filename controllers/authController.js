@@ -20,16 +20,17 @@ router.post('/register',
         const { errors } = validationResult(req);
         try {
             if (errors.length > 0) {
-                throw new Error('Validation error');
+                const message = errors.map((e) => e.msg).join('\n');
+                throw new Error(message);
             };
             await req.auth.register(req.body.username, req.body.email, req.body.password);
             res.redirect('/'); //TODO  change redirect location
-        } catch (error) {
-            console.log(error.message);
+        } catch (err) {
             const ctx = {
-                errors,
+                errors: err.message.split('\n'),
                 userData: {
-                    username: req.body.username
+                    username: req.body.username,
+                    email: req.body.email
                 }
             }
             res.render('user/register', ctx);
@@ -50,7 +51,8 @@ router.post('/login', isGuest(), async(req, res) => {
         const ctx = {
             errors: [err.message],
             userData: {
-                username: req.body.username
+                username: req.body.username,
+                email: req.body.email
             }
         }
         res.render('user/login', ctx);
