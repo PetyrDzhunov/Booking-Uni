@@ -6,4 +6,5 @@ module.exports = () => (req, res, next) => {
         ...hotel
     };
 
+    next();
 };
