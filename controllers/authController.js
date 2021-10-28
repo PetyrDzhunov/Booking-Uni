@@ -9,6 +9,7 @@ router.get('/register', isGuest(), (req, res) => {
 router.post('/register',
     isGuest(),
     body('email', 'Invalid email').isEmail(),
+    body('password').isLength({ min: 3 }).withMessage('Password must be at least 3 characters long').bail().matches(/[a-zA-Z0-9]/).withMessage('Password may contain only english letters and numbers'),
     body('username').isLength({ min: 3 }).withMessage('Username must be at least 3 characters long'),
     body('rePass').custom((value, { req }) => {
         if (value != req.body.password) {
