@@ -16,7 +16,6 @@ router.post('/create', isUser(), async(req, res) => {
         owner: req.user._id
     };
 
-    console.log(hotelData);
 
     try {
         await req.storage.createHotel(hotelData);
@@ -41,6 +40,19 @@ router.post('/create', isUser(), async(req, res) => {
     }
 });
 
+router.get('/details/:id', async(req, res) => {
+    const id = req.params.id;
+    try {
+        const hotel = await req.storage.getHotelById(id);
+        hotel.hasUser = Boolean(req.user);
+        hotel.isAuthor = req.user && req.user._id == hotel.owner;
+        hotel.isBooked = req.user && hotel.bookedBy.some(x => x._id == req.user._id);
+        res.render('hotel/details', { hotel });
+    } catch (error) {
+        console.log(error.message);
+        res.redirect('/404');
+    }
 
+});
 
 module.exports = router;
