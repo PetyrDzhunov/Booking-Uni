@@ -13,7 +13,9 @@ const schema = new Schema({
     hashedPassword: {
         type: String,
         required: true,
-    }
+    },
+
+    bookedHotels: [{ type: Schema.Types.ObjectId, ref: "User", default: [] }]
 });
 
 
